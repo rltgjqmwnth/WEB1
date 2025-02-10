@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Things I Like</title>
+        <style>
+            body {
+                background-color: #f0f0f0;
+                overflow: hidden; /* 스크롤 방지 */
+                margin: 0;
+                height: 100vh;
+                position: relative;
+            }
+
+            .title {
+                text-align: center;
+            }
+
+            .floating-img {
+                position: absolute;
+                width: 300px;
+                height: 180px;
+                transition: transform 2s ease-in-out;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="title"><a href="index.html">Things I like!</a></h1>
+
+        <!-- 떠다니는 이미지 -->
+        <img src="coffee.jpg" class="floating-img" onclick="location.href='1.html'">
+        <img src="badminton.jpg" class="floating-img" onclick="location.href='2.html'">
+        <img src="studing.jpg" class="floating-img" onclick="location.href='3.html'">
+
+        <script>
+            function floatImages() {
+                const images = document.querySelectorAll('.floating-img');
+
+                images.forEach(img => {
+                    function moveImage() {
+                        let x = Math.random() * (window.innerWidth - 300);
+                        let y = Math.random() * (window.innerHeight - 180);
+
+                        img.style.transform = `translate(${x}px, ${y}px)`;
+                    }
+
+                    // 1️⃣ 처음 시작할 때 랜덤 위치 설정
+                    moveImage();
+
+                    // 2️⃣ 3초마다 위치 변경
+                    setInterval(moveImage, 3000);
+                });
+            }
+
+            window.onload = floatImages;
+        </script>
+    </body>
+</html>
